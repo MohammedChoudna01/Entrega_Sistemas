@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Comprobar si neofetch está instalado
+if ! command -v neofetch &> /dev/null
+then
+    # Si no está instalado, instalarlo
+    echo "Neofetch no está instalado. Instalando..."
+    sudo apt update
+    sudo apt install -y neofetch
+fi
+
+# Mostrar la información del sistema con neofetch
+neofetch  --ascii_colors 33 34
+

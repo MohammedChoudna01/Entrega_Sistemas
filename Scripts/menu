@@ -1,0 +1,29 @@
+#!/bin/bash
+./zenityConfirmation.sh
+# Configurar variables de Zenity
+TITLE="Menú Principal"
+TEXT="Selecciona una opción:"
+WIDTH=700
+HEIGHT=500
+BUTTON_CANCEL="Cancelar"
+MENU_ITEMS=("Sistema Operativo" "Red" "Sistema de Alertas")
+
+# Bucle hasta que el usuario seleccione una opción o presione "Cancelar"
+MENU_SELECTION=$(zenity --list --title="$TITLE" --text="$TEXT" --width=$WIDTH --height=$HEIGHT --column="Menú" "${MENU_ITEMS[@]}" --cancel-label=$BUTTON_CANCEL)
+
+# Verificar si se seleccionó una opción o se canceló el menú
+if [[ -n "$MENU_SELECTION" ]]; then
+    # Ejecutar el script correspondiente a la opción seleccionada
+    case "$MENU_SELECTION" in
+        "Sistema Operativo")
+            ./submenuSistema.sh
+            ;;
+        "Red")
+            ./submenuRed.sh
+            ;;
+        "Sistema de Alertas")
+            ./Alertas/AlertaP.sh
+
+            ;;
+    esac
+fi
